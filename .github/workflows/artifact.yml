@@ -19,20 +19,16 @@ jobs:
         name: hello-artifact
         path: hello.txt
 
-  download:
+  download: #added
     needs: build
     runs-on: ubuntu-latest
-
     steps:
-    - name: Download text file
-      uses: actions/download-artifact@v4.1.9
-      with:
-        # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
-        name: hello-artifact
-        # Destination path. Supports basic tilde expansion. Defaults to $GITHUB_WORKSPACE
-        path: ./artifacts
-
-    - name: Display content of the text file
-      run: cat ./artifacts/hello.txt
+      - name: Download text file
+        uses: actions/download-artifact@v4
+        with:
+          name: hello-artifact
+          path: ./artifacts
+      - name: Display content of the text file
+        run: cat ./artifacts/hello.txt
           
     
